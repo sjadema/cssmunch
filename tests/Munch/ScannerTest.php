@@ -258,7 +258,7 @@ class Munch_ScannerTest extends PHPUnit_Framework_TestCase
     {
         $this->_scanner->setInput($in);
         $token = $this->_scanner->getNextToken();
-        $this->assertType('Munch_Token_String', $token);
+        $this->assertInstanceOf('Munch_Token_String', $token);
         $this->assertEquals(Munch_Token::STR, $token->getType());
         $this->assertEquals($value, $token->getValue());
     }
@@ -291,7 +291,7 @@ class Munch_ScannerTest extends PHPUnit_Framework_TestCase
     {
         $this->_scanner->setInput($in);
         $token = $this->_scanner->getNextToken();
-        $this->assertType('Munch_Token', $token);
+        $this->assertInstanceOf('Munch_Token', $token);
         $this->assertEquals(Munch_Token::STR, $token->getType());
         $this->assertEquals($value, $token->getValue());
     }
@@ -329,7 +329,7 @@ class Munch_ScannerTest extends PHPUnit_Framework_TestCase
     {
         $this->_scanner->setInput($in);
         $token = $this->_scanner->getNextToken();
-        $this->assertType('Munch_Token_Uri', $token);
+        $this->assertInstanceOf('Munch_Token_Uri', $token);
         $this->assertEquals(Munch_Token::URI, $token->getType());
         $this->assertEquals($value, $token->getValue());
     }
@@ -403,7 +403,7 @@ class Munch_ScannerTest extends PHPUnit_Framework_TestCase
     {
         $this->_scanner->setInput($in);
         $token = $this->_scanner->getNextToken();
-        $this->assertType('Munch_Token_Identifier', $token);
+        $this->assertInstanceOf('Munch_Token_Identifier', $token);
         $this->assertEquals(Munch_Token::IDENT, $token->getType());
         $this->assertEquals($value, $token->getValue());
     }
@@ -437,7 +437,7 @@ class Munch_ScannerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(Munch_Token::MINUS, $token->getType());
 
         $token = $this->_scanner->getNextToken();
-        $this->assertType('Munch_Token_Number', $token);
+        $this->assertInstanceOf('Munch_Token_Number', $token);
         $this->assertEquals($value, $token->getValue());
     }
 
@@ -589,7 +589,7 @@ class Munch_ScannerTest extends PHPUnit_Framework_TestCase
     {
         $this->_scanner->setInput($in);
         $token = $this->_scanner->getNextToken();
-        $this->assertType('Munch_Token_Function', $token);
+        $this->assertInstanceOf('Munch_Token_Function', $token);
         $this->assertEquals(Munch_Token::FUNC, $token->getType());
         $this->assertEquals($value, $token->getValue());
     }
@@ -647,7 +647,7 @@ class Munch_ScannerTest extends PHPUnit_Framework_TestCase
     {
         $this->_scanner->setInput($in);
         $token = $this->_scanner->getNextToken();
-        $this->assertType($tokenClass, $token);
+        $this->assertInstanceOf($tokenClass, $token);
         $this->assertEquals($tokenType, $token->getType());
         $this->assertEquals($number, $token->getValue());
 

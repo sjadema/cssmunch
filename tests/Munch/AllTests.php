@@ -28,12 +28,9 @@
 if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'Munch_AllTests::main');
 }
- 
+
 require_once 'bootstrap.php';
-
-require_once 'PHPUnit/Framework.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
-
+ 
 require_once 'Munch/Utf8Test.php';
 require_once 'Munch/ParserTest.php';
 require_once 'Munch/ScannerTest.php';

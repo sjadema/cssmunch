@@ -25,12 +25,15 @@
  * @link       http://cssmunch.googlecode.com
  */
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
 $rootDir = dirname(dirname(__FILE__));
 
 $incDirs = array(
     $rootDir.DIRECTORY_SEPARATOR.'library',
     $rootDir.DIRECTORY_SEPARATOR.'tests',
-    $rootDir.DIRECTORY_SEPARATOR.'vendor');
+    $rootDir.DIRECTORY_SEPARATOR.'vendor'
+);
 
 set_include_path(implode(PATH_SEPARATOR, $incDirs));
 

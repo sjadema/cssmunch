@@ -83,7 +83,7 @@ class Munch_ParserTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructorNoParams()
     {
-        $this->assertType('Munch_Scanner', $this->_parser->getScanner());
+        $this->assertInstanceOf('Munch_Scanner', $this->_parser->getScanner());
     }
 
     /**
@@ -349,11 +349,11 @@ class Munch_ParserTest extends PHPUnit_Framework_TestCase
         $selector = $stylesheet->rulesets[0]->selectors[0];
         $this->assertEquals(2, count($selector->selectorGroups));
 
-        $this->assertType('Munch_AstNode_SimpleSelector_Class', $selector->selectorGroups[0]->simpleSelectors[0]);
-        $this->assertType('Munch_AstNode_SimpleSelector_Class', $selector->selectorGroups[1]->simpleSelectors[0]);
+        $this->assertInstanceOf('Munch_AstNode_SimpleSelector_Class', $selector->selectorGroups[0]->simpleSelectors[0]);
+        $this->assertInstanceOf('Munch_AstNode_SimpleSelector_Class', $selector->selectorGroups[1]->simpleSelectors[0]);
 
         $this->assertEquals(1, count($selector->combinators));
-        $this->assertType('Munch_AstNode_Combinator', $selector->combinators[0]);
+        $this->assertInstanceOf('Munch_AstNode_Combinator', $selector->combinators[0]);
         $this->assertEquals($combinator, $selector->combinators[0]->combinatorType);
     }
 
@@ -412,7 +412,7 @@ class Munch_ParserTest extends PHPUnit_Framework_TestCase
         }
 
         $this->assertEquals(1, count($selectorGroup->simpleSelectors));
-        $this->assertType('Munch_AstNode_SimpleSelector_' . $selectorType, $selectorGroup->simpleSelectors[0]);
+        $this->assertInstanceOf('Munch_AstNode_SimpleSelector_' . $selectorType, $selectorGroup->simpleSelectors[0]);
         $this->assertEquals('selector', $selectorGroup->simpleSelectors[0]->value);
     }
 
@@ -453,7 +453,7 @@ class Munch_ParserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($selectorGroup->simpleSelectors));
         $simpleSelector = $selectorGroup->simpleSelectors[0];
 
-        $this->assertType('Munch_AstNode_SimpleSelector_Attribute', $simpleSelector);
+        $this->assertInstanceOf('Munch_AstNode_SimpleSelector_Attribute', $simpleSelector);
         $this->assertEquals($attribute, $simpleSelector->attribute);
         $this->assertEquals($operator, $simpleSelector->operator);
         $this->assertEquals($value, $simpleSelector->value);
@@ -489,7 +489,7 @@ class Munch_ParserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($selectorGroup->simpleSelectors));
         $simpleSelector = $selectorGroup->simpleSelectors[0];
 
-        $this->assertType('Munch_AstNode_SimpleSelector_Pseudo', $simpleSelector);
+        $this->assertInstanceOf('Munch_AstNode_SimpleSelector_Pseudo', $simpleSelector);
         $this->assertEquals($pseudo, $simpleSelector->pseudo);
         $this->assertSame($value, $simpleSelector->value);
     }
@@ -507,10 +507,10 @@ class Munch_ParserTest extends PHPUnit_Framework_TestCase
         $selectorGroup = $stylesheet->rulesets[0]->selectors[0]->selectorGroups[0];
 
         $this->assertEquals(4, count($selectorGroup->simpleSelectors));
-        $this->assertType('Munch_AstNode_SimpleSelector_Class', $selectorGroup->simpleSelectors[0]);
-        $this->assertType('Munch_AstNode_SimpleSelector_Attribute', $selectorGroup->simpleSelectors[1]);
-        $this->assertType('Munch_AstNode_SimpleSelector_Attribute', $selectorGroup->simpleSelectors[2]);
-        $this->assertType('Munch_AstNode_SimpleSelector_Id', $selectorGroup->simpleSelectors[3]);
+        $this->assertInstanceOf('Munch_AstNode_SimpleSelector_Class', $selectorGroup->simpleSelectors[0]);
+        $this->assertInstanceOf('Munch_AstNode_SimpleSelector_Attribute', $selectorGroup->simpleSelectors[1]);
+        $this->assertInstanceOf('Munch_AstNode_SimpleSelector_Attribute', $selectorGroup->simpleSelectors[2]);
+        $this->assertInstanceOf('Munch_AstNode_SimpleSelector_Id', $selectorGroup->simpleSelectors[3]);
     }
 
     /**
@@ -558,23 +558,23 @@ class Munch_ParserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($stylesheet->rulesets));
         
         $ruleset = $stylesheet->rulesets[0];
-        $this->assertType('Munch_AstNode_Ruleset', $ruleset);
+        $this->assertInstanceOf('Munch_AstNode_Ruleset', $ruleset);
         $this->assertEquals(1, count($ruleset->declarations));
 
         $declaration = $ruleset->declarations[0];
-        $this->assertType('Munch_AstNode_Declaration', $declaration);
-        $this->assertType('Munch_AstNode_Property', $declaration->property);
+        $this->assertInstanceOf('Munch_AstNode_Declaration', $declaration);
+        $this->assertInstanceOf('Munch_AstNode_Property', $declaration->property);
 
         $this->assertEquals('x', $declaration->property->value);
 
         $expression = $declaration->expression;
-        $this->assertType('Munch_AstNode_Expression', $expression);
+        $this->assertInstanceOf('Munch_AstNode_Expression', $expression);
 
         $this->assertEquals(1, count($expression->terms));
         $this->assertEquals(0, count($expression->operators));
 
         $term = $expression->terms[0];
-        $this->assertType('Munch_AstNode_Term_' . $termType, $term);
+        $this->assertInstanceOf('Munch_AstNode_Term_' . $termType, $term);
 
         if ($unaryOperatorType) {
             $this->assertEquals($unaryOperatorType, $term->unaryOperator->type);
@@ -620,32 +620,32 @@ class Munch_ParserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($stylesheet->rulesets[0]->declarations[0]->expression->terms));
         $term = $stylesheet->rulesets[0]->declarations[0]->expression->terms[0];
 
-        $this->assertType('Munch_AstNode_Term_Function', $term);
+        $this->assertInstanceOf('Munch_AstNode_Term_Function', $term);
         $func = $term->function;
 
         $this->assertEquals(1, count($func->expression->terms));
 
         $term = $func->expression->terms[0];
 
-        $this->assertType('Munch_AstNode_Term_Function', $term);
+        $this->assertInstanceOf('Munch_AstNode_Term_Function', $term);
         $func = $term->function;
 
         $this->assertEquals(3, count($func->expression->terms));
         $terms = $func->expression->terms;
 
-        $this->assertType('Munch_AstNode_Term_String', $terms[0]);
+        $this->assertInstanceOf('Munch_AstNode_Term_String', $terms[0]);
         $this->assertEquals('x', $terms[0]->value);
-        $this->assertType('Munch_AstNode_Term_Identifier', $terms[1]);
+        $this->assertInstanceOf('Munch_AstNode_Term_Identifier', $terms[1]);
         $this->assertEquals('hello-world', $terms[1]->value);
-        $this->assertType('Munch_AstNode_Term_Percentage', $terms[2]);
+        $this->assertInstanceOf('Munch_AstNode_Term_Percentage', $terms[2]);
         $this->assertEquals('1', $terms[2]->value);
 
         $this->assertEquals(2, count($func->expression->operators));
         $operators = $func->expression->operators;
 
-        $this->assertType('Munch_AstNode_Operator', $operators[0]);
+        $this->assertInstanceOf('Munch_AstNode_Operator', $operators[0]);
         $this->assertEquals(Munch_AstNode_Operator::COMMA, $operators[0]->type);
-        $this->assertType('Munch_AstNode_Operator', $operators[1]);
+        $this->assertInstanceOf('Munch_AstNode_Operator', $operators[1]);
         $this->assertEquals(Munch_AstNode_Operator::SPACE, $operators[1]->type);
     }
 
